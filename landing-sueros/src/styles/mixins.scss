@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+@mixin mobile  { @media (max-width: $mobile)  { @content; } }
+@mixin tablet  { @media (max-width: $tablet)  { @content; } }
+@mixin desktop { @media (min-width: $desktop) { @content; } }
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin section-padding {
+  padding: 80px 120px;
+  @include tablet  { padding: 60px 40px; }
+  @include mobile  { padding: 40px 20px; }
+}

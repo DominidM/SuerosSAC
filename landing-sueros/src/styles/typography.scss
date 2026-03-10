@@ -1,0 +1,41 @@
+@use 'variables' as *;
+
+// Título hero — SUERO VITAMINICOS
+.title-hero {
+  font-family: $font-family;
+  font-weight: 800;       // Extra Bold
+  color: $negro;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+// Acento celeste — A DOMICILIO
+.title-hero-accent {
+  color: $celeste;
+}
+
+// Subtítulo — Una vida mas plena
+.subtitle {
+  font-family: $font-family;
+  font-weight: 600;       // SemiBold
+  color: $negro;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+}
+
+// Texto normal — cuidate con SueroHome
+.text-normal {
+  font-family: $font-family;
+  font-weight: 400;       // Regular
+  color: $gris-texto;
+  font-size: 1rem;
+}
+
+// Sección titles
+.section-title {
+  font-family: $font-family;
+  font-weight: 700;
+  color: $negro;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+}

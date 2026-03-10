@@ -1,0 +1,32 @@
+<section id="sueros" class="nuestros-sueros">
+  <h2 class="section-title">Nuestros sueros</h2>
+
+  @for (suero of sueros(); track suero.nombre; let i = $index) {
+    <div class="suero-card" [class.reverse]="i % 2 !== 0" [class.fondo-alt]="i % 2 !== 0">
+      
+      <div class="imagen">
+        <img [src]="suero.imagen" [alt]="suero.nombre" />
+      </div>
+
+      <div class="texto">
+        <span class="badge">
+          <i class="pi pi-circle-fill"></i>
+          {{ suero.badge }}
+        </span>
+        <div class="separador"></div>
+        <h3 class="nombre">
+          <i class="pi pi-heart"></i>
+          {{ suero.nombre }}
+        </h3>
+        <p class="descripcion" 
+           [innerHTML]="resaltarTexto(suero.descripcion, suero.descripcionDestacada)">
+        </p>
+        <button class="btn-consulta" (click)="consultarWhatsapp(suero.nombre)">
+          <i class="pi pi-whatsapp"></i>
+          Consulta
+        </button>
+      </div>
+
+    </div>
+  }
+</section>

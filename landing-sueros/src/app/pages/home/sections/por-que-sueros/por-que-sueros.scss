@@ -1,0 +1,124 @@
+@use '../../../../../styles/variables.scss' as *;
+
+.por-que-sueros {
+  padding: 80px 120px;
+  background: #fff;
+
+  @media (max-width: 768px) {
+    padding: 60px 24px;
+  }
+
+  .section-title {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: $negro;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 40px;
+    }
+  }
+
+  .text-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-left: 24px;
+  }
+
+  .card-title {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: $negro;
+  }
+
+  .card-text {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 1rem;
+    color: $gris-texto;
+    line-height: 1.8;
+
+    strong {
+      color: $celeste;
+      font-weight: 700;
+    }
+  }
+
+  .card-subtext {
+    font-family: $font-family;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: $negro;
+    font-style: italic;
+  }
+
+  .stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 8px;
+
+    @media (max-width: 480px) {
+      gap: 20px;
+    }
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    i {
+      font-size: 1.4rem;
+      color: $celeste;
+    }
+
+    .stat-numero {
+      font-family: $font-family;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: $negro;
+    }
+
+    .stat-label {
+      font-family: $font-family;
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: $gris-texto;
+    }
+  }
+
+  .image-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      width: 100%;
+      max-width: 380px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .caption {
+      font-family: $font-family;
+      font-size: 0.85rem;
+      color: $gris-texto;
+    }
+  }
+}

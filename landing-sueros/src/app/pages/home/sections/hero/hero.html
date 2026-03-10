@@ -1,0 +1,25 @@
+<section 
+  class="hero" 
+  [style.background-image]="'url(' + slides()[slideActual()].imagen + ')'"
+>
+  <div class="overlay"></div>
+
+  <div class="hero-content" [class.visible]="slideVisible()">
+    <h1 class="title">
+      {{ slides()[slideActual()].titulo }}<br>
+      <span class="accent">{{ slides()[slideActual()].acento }}</span>
+    </h1>
+    <h2 class="subtitle">{{ slides()[slideActual()].subtitulo }}</h2>
+    <p class="texto">{{ slides()[slideActual()].texto }}</p>
+  </div>
+
+  <div class="dots">
+    @for (slide of slides(); track $index) {
+      <button 
+        class="dot" 
+        [class.active]="slideActual() === $index"
+        (click)="irASlide($index)"
+      ></button>
+    }
+  </div>
+</section>
