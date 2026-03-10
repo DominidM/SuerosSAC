@@ -14,6 +14,8 @@
 
   @media (max-width: 768px) {
     padding: 0 24px;
+    align-items: flex-end;
+    padding-bottom: 80px;
   }
 
   .overlay {
@@ -26,6 +28,31 @@
       transparent 75%
     );
     z-index: 0;
+
+    @media (max-width: 768px) {
+      background: linear-gradient(
+        to top,
+        rgba(255,255,255,1) 45%,
+        rgba(255,255,255,0.6) 65%,
+        transparent 85%
+      );
+    }
+  }
+
+  .hero-logo {
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    z-index: 2;
+
+    @media (max-width: 768px) {
+      display: none; // el navbar mobile ya muestra el logo
+    }
+
+    img {
+      height: 55px;
+      object-fit: contain;
+    }
   }
 
   .hero-content {
@@ -39,16 +66,37 @@
     transform: translateY(10px);
     transition: opacity 0.4s ease, transform 0.4s ease;
 
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
+
     &.visible {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    color: $celeste;
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    width: fit-content;
+    backdrop-filter: blur(4px);
+
+    i { font-size: 0.5rem; }
+  }
+
   .title {
     font-family: $font-family;
     font-weight: 800;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 8vw, 4rem);
     color: $negro;
     line-height: 1.1;
     text-transform: uppercase;
@@ -61,7 +109,7 @@
   .subtitle {
     font-family: $font-family;
     font-weight: 600;
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-size: clamp(1rem, 4vw, 1.6rem);
     color: $negro;
     margin-top: 8px;
   }
@@ -71,6 +119,65 @@
     font-weight: 400;
     font-size: 1rem;
     color: $gris-texto;
+  }
+
+  .acciones {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+
+      .btn-reserva, .btn-llamar {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  .btn-reserva {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: $celeste;
+    color: $blanco;
+    border: none;
+    padding: 12px 28px;
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: darken(#62B1F2, 10%);
+      transform: translateX(4px);
+    }
+  }
+
+  .btn-llamar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: $negro;
+    border: 2px solid $negro;
+    padding: 12px 28px;
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $negro;
+      color: $blanco;
+    }
   }
 
   .dots {
@@ -83,6 +190,7 @@
 
     @media (max-width: 768px) {
       right: 24px;
+      bottom: 24px;
     }
   }
 

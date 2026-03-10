@@ -1,34 +1,155 @@
-@use '../../../styles/variables.scss' as *;
+@use '../../../styles/variables' as *;
 
 footer {
   background: #00203B;
-  padding: 40px 120px;
+  padding: 60px 120px 0;
 
   @media (max-width: 768px) {
-    padding: 40px 24px;
+    padding: 40px 24px 0;
   }
 
   .footer-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 50px;
 
     @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding-bottom: 32px;
     }
   }
 
-  .logo img {
-    height: 50px;
-    object-fit: contain;
+  .col h4 {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 1rem;
+    color: $blanco;
+    margin-bottom: 20px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: $celeste;
+    }
   }
 
-  .copy {
-    font-family: $font-family;
-    font-weight: 400;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+  .col-marca {
+    img {
+      height: 95px;
+      object-fit: contain;
+      margin-bottom: 16px;
+
+      @media (max-width: 768px) {
+        height: 70px;
+      }
+    }
+
+    p {
+      font-family: $font-family;
+      font-size: 0.9rem;
+      color: rgba($blanco, 0.6);
+      line-height: 1.7;
+    }
+  }
+
+  .col-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @media (max-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    a {
+      font-family: $font-family;
+      font-size: 0.9rem;
+      color: rgba($blanco, 0.6);
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover { color: $celeste; }
+    }
+  }
+
+  .col-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    .telefono {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: $font-family;
+      font-size: 0.95rem;
+      color: rgba($blanco, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      i { color: $celeste; }
+      &:hover { color: $celeste; }
+    }
+
+    .btn-wsp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: $blanco;
+      border: none;
+      padding: 10px 20px;
+      font-family: $font-family;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      width: fit-content;
+      transition: background 0.3s ease;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        justify-content: center;
+      }
+
+      &:hover { background: darken(#25D366, 8%); }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid $celeste;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+
+    span {
+      font-family: $font-family;
+      font-size: 0.8rem;
+      color: rgba($blanco, 0.5);
+
+      strong {
+        color: $celeste;
+        font-weight: 700;
+      }
+    }
   }
 }

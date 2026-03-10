@@ -1,8 +1,9 @@
 @use '../../../../../styles/variables.scss' as *;
+@use '../../../../../styles/mixins' as *;
 
 .por-que-sueros {
   padding: 80px 120px;
-  background: #fff;
+  background: rgba(98, 177, 242, 0.04);
 
   @media (max-width: 768px) {
     padding: 60px 24px;
@@ -34,6 +35,22 @@
     flex-direction: column;
     gap: 16px;
     padding-left: 24px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba($celeste, 0.12);
+    color: $celeste;
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    width: fit-content;
+
+    i { font-size: 0.5rem; }
   }
 
   .card-title {
@@ -113,6 +130,11 @@
       height: 280px;
       object-fit: cover;
       border-radius: 8px;
+      transition: transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.03);
+      }
     }
 
     .caption {

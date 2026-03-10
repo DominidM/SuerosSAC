@@ -71,4 +71,13 @@ export class HeroComponent implements OnInit, OnDestroy {
     this.cambiarSlide(index);
     this.iniciarAutoplay();
   }
+  
+  readonly telefono = '519832781298';
+  readonly mensaje = 'Hola, quiero reservar una cita';
+
+  abrirWhatsapp() {
+    const url = `https://wa.me/${this.telefono}?text=${encodeURIComponent(this.mensaje)}`;
+    window.open(url, '_blank');
+  }
+
 }

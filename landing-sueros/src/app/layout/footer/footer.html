@@ -1,11 +1,40 @@
 <footer>
   <div class="footer-container">
-    <div class="logo">
+
+    <div class="col col-marca">
       <img 
         src="https://res.cloudinary.com/dxuk9bogw/image/upload/v1773170926/logo-footer_l8u1fv.png" 
         alt="SueroHome" 
       />
+      <p>Vendemos y aplicamos sueros médicos según tu necesidad, siempre bajo receta médica.</p>
     </div>
-    <p class="copy">© {{ anio }} SueroHome. Todos los derechos reservados.</p>
+
+    <div class="col col-links">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a (click)="scrollTo('inicio')">Inicio</a></li>
+        <li><a (click)="scrollTo('malestares')">Malestares</a></li>
+        <li><a (click)="scrollTo('servicios')">Servicios</a></li>
+        <li><a (click)="scrollTo('contacto')">Contáctanos</a></li>
+      </ul>
+    </div>
+
+    <div class="col col-contacto">
+      <h4>Contacto</h4>
+      <a class="telefono" href="tel:+519832781298">
+        <i class="pi pi-phone"></i>
+        +51 983 278 1298
+      </a>
+      <button class="btn-wsp" (click)="abrirWhatsapp()">
+        <i class="pi pi-whatsapp"></i>
+        WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© {{ anio }} SueroHome. Todos los derechos reservados.</span>
+    <span>Hecho por <strong>SolveGrades</strong></span>
   </div>
 </footer>

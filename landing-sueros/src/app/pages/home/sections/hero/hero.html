@@ -3,14 +3,34 @@
   [style.background-image]="'url(' + slides()[slideActual()].imagen + ')'"
 >
   <div class="overlay"></div>
-
+      <div class="hero-logo">
+        <img src="https://res.cloudinary.com/dxuk9bogw/image/upload/v1773168649/SG_wemo2k.png" alt="SueroHome" />
+    </div>
   <div class="hero-content" [class.visible]="slideVisible()">
+
+    <span class="badge">
+      <i class="pi pi-circle-fill"></i>
+      Atención médica a domicilio
+    </span>
+
     <h1 class="title">
       {{ slides()[slideActual()].titulo }}<br>
       <span class="accent">{{ slides()[slideActual()].acento }}</span>
     </h1>
     <h2 class="subtitle">{{ slides()[slideActual()].subtitulo }}</h2>
     <p class="texto">{{ slides()[slideActual()].texto }}</p>
+
+    <div class="acciones">
+      <button class="btn-reserva" (click)="abrirWhatsapp()">
+        Reserva tu cita
+        <i class="pi pi-arrow-right"></i>
+      </button>
+      <a class="btn-llamar" href="tel:+519832781298">
+        <i class="pi pi-phone"></i>
+        Llámanos
+      </a>
+    </div>
+
   </div>
 
   <div class="dots">

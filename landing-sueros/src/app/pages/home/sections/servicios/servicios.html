@@ -4,13 +4,30 @@
   <div class="cards-grid">
     @for (servicio of servicios(); track servicio.titulo) {
       <div class="card">
+
         <div class="card-imagen">
           <img [src]="servicio.imagen" [alt]="servicio.titulo" />
-        </div>
+        </div>|
         <div class="card-body">
-          <h3 class="card-titulo">{{ servicio.titulo }}</h3>
+          <span class="badge">
+            <i class="pi pi-circle-fill"></i>
+            {{ servicio.badge }}
+          </span>
+          <div class="separador"></div>
+
+          <h3 class="card-titulo">
+            <i class="pi" [ngClass]="servicio.icono"></i>
+            {{ servicio.titulo }}
+          </h3>
+
           <p class="card-descripcion">{{ servicio.descripcion }}</p>
+
+          <button class="btn-reservar" (click)="reservar(servicio.mensajeWsp)">
+            <i class="pi pi-whatsapp"></i>
+            Reservar
+          </button>
         </div>
+
       </div>
     }
   </div>
