@@ -1,0 +1,37 @@
+<div class="admin-section">
+  <div class="section-header">
+    <h1>Dashboard</h1>
+  </div>
+
+  @if (loading()) {
+    <div class="loading">Cargando...</div>
+  } @else {
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="pi pi-heart"></i>
+        <div class="stat-num">{{ stats().sueros }}</div>
+        <div class="stat-label">Sueros</div>
+      </div>
+      <div class="stat-card">
+        <i class="pi pi-briefcase"></i>
+        <div class="stat-num">{{ stats().servicios }}</div>
+        <div class="stat-label">Servicios</div>
+      </div>
+      <div class="stat-card">
+        <i class="pi pi-images"></i>
+        <div class="stat-num">{{ stats().slides }}</div>
+        <div class="stat-label">Slides</div>
+      </div>
+      <div class="stat-card">
+        <i class="pi pi-file"></i>
+        <div class="stat-num">{{ stats().reclamaciones }}</div>
+        <div class="stat-label">Reclamaciones</div>
+      </div>
+      <div class="stat-card warning">
+        <i class="pi pi-exclamation-triangle"></i>
+        <div class="stat-num">{{ stats().reclamacionesPendientes }}</div>
+        <div class="stat-label">Pendientes</div>
+      </div>
+    </div>
+  }
+</div>

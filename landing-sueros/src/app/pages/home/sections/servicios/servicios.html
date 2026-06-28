@@ -1,6 +1,10 @@
 <section id="servicios" class="servicios">
   <h2 class="section-title">Nuestros servicios</h2>
 
+  @if (errorDb()) {
+    <div class="error-db">{{ errorDb() }}</div>
+  }
+
   <div class="cards-grid">
     @for (servicio of servicios(); track servicio.titulo) {
       <div class="card">
@@ -22,7 +26,7 @@
 
           <p class="card-descripcion">{{ servicio.descripcion }}</p>
 
-          <button class="btn-reservar" (click)="reservar(servicio.mensajeWsp)">
+          <button class="btn-reservar" (click)="reservar(servicio.mensaje_wsp)">
             <i class="pi pi-whatsapp"></i>
             Reservar
           </button>

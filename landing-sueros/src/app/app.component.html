@@ -1,3 +1,7 @@
-<app-navbar />
+@if (!esAdmin()) {
+  <app-navbar />
+}
 <router-outlet />
-<app-footer />
+@if (!esAdmin()) {
+  <app-footer />
+}

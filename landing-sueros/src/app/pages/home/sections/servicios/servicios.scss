@@ -1,6 +1,16 @@
 @use '../../../../../styles/variables.scss' as *;
 @use '../../../../../styles/mixins' as *;
 
+.error-db {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 1rem 2rem;
+  margin: 0 0 2rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #fca5a5;
+}
+
 .servicios {
   padding: 80px 120px;
   background: #F9FBFE;

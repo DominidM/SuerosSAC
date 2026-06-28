@@ -12,9 +12,14 @@
         <li><a (click)="scrollTo('inicio')">Inicio</a></li>
         <li><a (click)="scrollTo('malestares')">Malestares</a></li>
         <li><a (click)="scrollTo('servicios')">Servicios</a></li>
-        <li><a class="btn-contacto" (click)="scrollTo('contacto')">Contáctanos</a></li>
+        <li><a (click)="scrollTo('contacto')">Contáctanos</a></li>
+        <li><a routerLink="/libro-reclamaciones">Libro de Reclamos</a></li>
       </ul>
     </div>
+
+    <a routerLink="/login" class="btn-login-nav">
+      <i class="pi pi-lock"></i>
+    </a>
 
     <!-- Hamburger solo mobile -->
     <button class="hamburger" (click)="toggleMenu()">
@@ -30,6 +35,8 @@
       <li><a (click)="scrollTo('malestares')">Malestares</a></li>
       <li><a (click)="scrollTo('servicios')">Servicios</a></li>
       <li><a (click)="scrollTo('contacto')">Contáctanos</a></li>
+      <li><a routerLink="/libro-reclamaciones">Libro de Reclamos</a></li>
+      <li><a routerLink="/login">Admin</a></li>
     </ul>
   </div>
 </nav>

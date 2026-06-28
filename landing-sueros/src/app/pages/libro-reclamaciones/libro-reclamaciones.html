@@ -1,0 +1,130 @@
+<section class="lr-page">
+  <div class="lr-container">
+    <div class="lr-header">
+      <div class="lr-legal-info">
+        <img src="https://res.cloudinary.com/dxuk9bogw/image/upload/v1773168649/SG_wemo2k.png" alt="SueroHome" />
+        <h1>Libro de Reclamaciones</h1>
+        <p class="lr-subtitle">
+          Libro de Reclamaciones virtual al amparo del 
+          <strong>Código de Protección y Defensa del Consumidor</strong> 
+          (Ley N° 29571) y su Reglamento (Decreto Supremo N° 011-2019-PRODUCE).
+        </p>
+        <p class="lr-desc">
+          Este libro está habilitado para que puedas registrar tu queja o reclamo 
+          por algún producto o servicio adquirido. Los campos marcados con 
+          <span class="required">*</span> son obligatorios.
+        </p>
+      </div>
+
+      <div class="lr-razon-social">
+        <h3>Datos del proveedor</h3>
+        <table class="info-table">
+          <tr><td><strong>Razón Social:</strong></td><td>SueroHome E.I.R.L.</td></tr>
+          <tr><td><strong>RUC:</strong></td><td>—</td></tr>
+          <tr><td><strong>Dirección:</strong></td><td>—</td></tr>
+          <tr><td><strong>Teléfono:</strong></td><td>+51 983 278 1298</td></tr>
+          <tr><td><strong>Email:</strong></td><td>contacto@sueroHome.com</td></tr>
+        </table>
+      </div>
+    </div>
+
+    @if (enviado) {
+      <div class="exito">
+        <i class="pi pi-check-circle"></i>
+        <h2>¡Gracias por tu reporte!</h2>
+        <p>Hemos recibido tu {{ form.tipo === 'QUEJA' ? 'queja' : 'reclamo' }}. 
+        Te contactaremos a la brevedad para darle seguimiento.</p>
+        <p class="exito-nro"><strong>N° de registro:</strong> {{ nroRegistro }}</p>
+        <a routerLink="/" class="btn-primary">Volver al inicio</a>
+      </div>
+    } @else {
+      <form (ngSubmit)="enviar()" class="lr-form">
+        <h2>Datos del consumidor</h2>
+        <div class="form-row">
+          <div class="field required">
+            <label>Nombres y Apellidos</label>
+            <input [(ngModel)]="form.nombres" name="nombres" required placeholder="Ej: Juan Pérez López" />
+          </div>
+          <div class="field required">
+            <label>DNI</label>
+            <input [(ngModel)]="form.dni" name="dni" required placeholder="12345678" maxlength="8" (input)="validarDNI()" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field required">
+            <label>Teléfono</label>
+            <input [(ngModel)]="form.telefono" name="telefono" required placeholder="987654321" maxlength="9" (input)="validarTelefono()" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input [(ngModel)]="form.correo" name="correo" type="email" placeholder="correo@ejemplo.com" />
+          </div>
+        </div>
+        <div class="field required">
+          <label>Dirección</label>
+          <input [(ngModel)]="form.direccion" name="direccion" required placeholder="Dirección de tu domicilio" />
+        </div>
+
+        <h2>Datos del producto o servicio</h2>
+        <div class="field required">
+          <label>Bien contratado o servicio adquirido</label>
+          <input [(ngModel)]="form.bien_contratado" name="bien_contratado" required placeholder="Ej: Suero vitamínico - atención a domicilio" />
+        </div>
+
+        <h2>Detalle de la reclamación</h2>
+        <div class="field required">
+          <label>Tipo</label>
+          <div class="tipo-opciones">
+            <label class="tipo-option" [class.active]="form.tipo === 'QUEJA'">
+              <input type="radio" [(ngModel)]="form.tipo" name="tipo" value="QUEJA" />
+              <i class="pi pi-exclamation-triangle"></i>
+              <div>
+                <strong>Queja</strong>
+                <span>Malestar o disconformidad</span>
+              </div>
+            </label>
+            <label class="tipo-option" [class.active]="form.tipo === 'RECLAMO'">
+              <input type="radio" [(ngModel)]="form.tipo" name="tipo" value="RECLAMO" />
+              <i class="pi pi-info-circle"></i>
+              <div>
+                <strong>Reclamo</strong>
+                <span>Incumplimiento de lo contratado</span>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="field required">
+          <label>Descripción detallada</label>
+          <textarea [(ngModel)]="form.detalle" name="detalle" required rows="4"
+            placeholder="Describe detalladamente los hechos que motivan tu queja o reclamo"></textarea>
+        </div>
+        <div class="field required">
+          <label>Pedido del consumidor</label>
+          <textarea [(ngModel)]="form.pedido" name="pedido" required rows="3"
+            placeholder="Señala qué es lo que solicitas: cambio del producto, devolución del dinero, etc."></textarea>
+        </div>
+
+        @if (error) {
+          <div class="error-msg">
+            <i class="pi pi-exclamation-circle"></i>
+            {{ error }}
+          </div>
+        }
+
+        <div class="form-footer">
+          <p class="legal-note">
+            * Ley N° 29571 - Código de Protección y Defensa del Consumidor. 
+            DS N° 011-2019-PRODUCE - Reglamento del Libro de Reclamaciones.
+          </p>
+          <button type="submit" class="btn-enviar" [disabled]="loading">
+            @if (loading) {
+              <i class="pi pi-spin pi-spinner"></i> Enviando...
+            } @else {
+              <i class="pi pi-send"></i> Enviar Reclamación
+            }
+          </button>
+        </div>
+      </form>
+    }
+  </div>
+</section>

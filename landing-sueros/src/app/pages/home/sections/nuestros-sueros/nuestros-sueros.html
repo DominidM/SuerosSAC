@@ -1,6 +1,10 @@
 <section id="sueros" class="nuestros-sueros">
   <h2 class="section-title">Nuestros sueros</h2>
 
+  @if (errorDb()) {
+    <div class="error-db">{{ errorDb() }}</div>
+  }
+
   @for (suero of sueros(); track suero.nombre; let i = $index) {
     <div class="suero-card" [class.reverse]="i % 2 !== 0" [class.fondo-alt]="i % 2 !== 0">
       
@@ -19,7 +23,7 @@
           {{ suero.nombre }}
         </h3>
         <p class="descripcion" 
-           [innerHTML]="resaltarTexto(suero.descripcion, suero.descripcionDestacada)">
+           [innerHTML]="resaltarTexto(suero.descripcion, suero.descripcion_destacada)">
         </p>
         <button class="btn-consulta" (click)="consultarWhatsapp(suero.nombre)">
           <i class="pi pi-whatsapp"></i>

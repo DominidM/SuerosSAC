@@ -59,6 +59,11 @@ footer {
     }
   }
 
+  .libro-reclamos-img {
+    height: 50px;
+    object-fit: contain;
+  }
+
   .col-links ul {
     list-style: none;
     padding: 0;
@@ -152,4 +157,21 @@ footer {
       }
     }
   }
+
+  .solvegrades-link {
+    display: inline-flex;
+    align-items: center;
+
+    img {
+      height: 80px;
+      object-fit: contain;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
 }

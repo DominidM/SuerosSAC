@@ -1,10 +1,11 @@
 import { Component, HostListener, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
@@ -12,6 +13,8 @@ export class NavbarComponent {
   isScrolled = signal(false);
   menuAbierto = signal(false);
   isAtTop = computed(() => !this.isScrolled());
+
+  constructor(private router: Router) {}
 
   @HostListener('window:scroll')
   onScroll() {
@@ -24,7 +27,15 @@ export class NavbarComponent {
   }
 
   scrollTo(id: string) {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     this.menuAbierto.set(false);
+    if (this.router.url === '/' || this.router.url === '') {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      this.router.navigateByUrl('/').then(() => {
+        setTimeout(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      });
+    }
   }
 }

@@ -1,0 +1,96 @@
+<div class="admin-section">
+  <div class="section-header">
+    <h1>Libro de Reclamaciones</h1>
+  </div>
+
+  <app-confirm-modal
+    [visible]="mostrarModal()"
+    titulo="Eliminar reclamación"
+    mensaje="¿Estás seguro de eliminar esta reclamación? Esta acción no se puede deshacer."
+    tipo="danger"
+    (confirmar)="eliminar()"
+    (cancelar)="mostrarModal.set(false)"
+  />
+
+  @if (mostrandoDetalle && editando) {
+    <div class="form-card">
+      <h3>Detalle de reclamación #{{ editando.id }}</h3>
+      <div class="form-grid">
+        <div class="field"><label>Nombres</label><input [value]="editando.nombres" readonly /></div>
+        <div class="field"><label>Apellidos</label><input [value]="editando.apellidos" readonly /></div>
+        <div class="field"><label>DNI</label><input [value]="editando.dni" readonly /></div>
+        <div class="field"><label>Teléfono</label><input [value]="editando.telefono" readonly /></div>
+        <div class="field full-width"><label>Correo</label><input [value]="editando.correo" readonly /></div>
+        <div class="field full-width"><label>Dirección</label><input [value]="editando.direccion" readonly /></div>
+        <div class="field full-width"><label>Tipo</label><input [value]="editando.tipo" readonly /></div>
+        <div class="field full-width"><label>Detalle</label><textarea [value]="editando.detalle" rows="4" readonly></textarea></div>
+        <div class="field full-width"><label>Pedido</label><textarea [value]="editando.pedido" rows="3" readonly></textarea></div>
+        <div class="field full-width">
+          <label>Fecha</label>
+          <input [value]="editando.created_at | date:'dd/MM/yyyy HH:mm'" readonly />
+        </div>
+        <div class="field">
+          <label>Estado</label>
+          <select [(ngModel)]="editando.estado">
+            @for (estado of estados; track estado.value) {
+              <option [value]="estado.value">{{ estado.label }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" (click)="cerrarDetalle()">Cerrar</button>
+        <button class="btn-primary" (click)="actualizarEstado()">
+          <i class="pi pi-check"></i> Actualizar estado
+        </button>
+      </div>
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="loading">Cargando...</div>
+  } @else if (items().length === 0) {
+    <div class="empty-state">
+      <i class="pi pi-file"></i>
+      <p>No hay reclamaciones registradas.</p>
+    </div>
+  } @else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of items(); track item.id) {
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.nombres }} {{ item.apellidos }}</td>
+              <td>{{ item.tipo }}</td>
+              <td>
+                <span [class]="'estado-' + item.estado">
+                  {{ item.estado }}
+                </span>
+              </td>
+              <td>{{ item.created_at | date:'dd/MM/yyyy' }}</td>
+              <td class="acciones">
+                <button class="btn-icon ver" (click)="ver(item)" title="Ver detalle">
+                  <i class="pi pi-eye"></i>
+                </button>
+                <button class="btn-icon eliminar" (click)="confirmarEliminar(item.id!)" title="Eliminar">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

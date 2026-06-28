@@ -1,0 +1,106 @@
+<div class="admin-section">
+  <div class="section-header">
+    <h1>Slides del Hero</h1>
+    <button class="btn-primary" (click)="nuevo()">
+      <i class="pi pi-plus"></i> Nuevo Slide
+    </button>
+  </div>
+
+  <app-loading-overlay [visible]="guardando()" mensaje="Guardando..." />
+
+  <app-confirm-modal
+    [visible]="mostrarModal()"
+    titulo="Eliminar slide"
+    mensaje="¿Estás seguro de eliminar este slide? Esta acción no se puede deshacer."
+    tipo="danger"
+    (confirmar)="eliminar()"
+    (cancelar)="mostrarModal.set(false)"
+  />
+
+  @if (mostrandoForm && editando) {
+    <div class="form-card">
+      <h3>{{ editando.id ? 'Editar' : 'Nuevo' }} Slide</h3>
+      <div class="form-grid">
+        <div class="field">
+          <label>Título</label>
+          <input [(ngModel)]="editando.titulo" placeholder="Ej: SUERO VITAMINICOS" />
+        </div>
+        <div class="field">
+          <label>Acento</label>
+          <input [(ngModel)]="editando.acento" placeholder="Ej: A DOMICILIO" />
+        </div>
+        <div class="field">
+          <label>Subtítulo</label>
+          <input [(ngModel)]="editando.subtitulo" placeholder="Ej: Una vida mas plena" />
+        </div>
+        <div class="field">
+          <label>Texto</label>
+          <input [(ngModel)]="editando.texto" placeholder="Ej: cuidate con SueroHome" />
+        </div>
+        <div class="field full-width">
+          <label>Imagen</label>
+          <app-image-upload [imageUrl]="editando.imagen" (imageUrlChange)="editando.imagen = $event" />
+        </div>
+        <div class="field">
+          <label>Orden</label>
+          <input type="number" [(ngModel)]="editando.orden" />
+        </div>
+      </div>
+      @if (error()) {
+        <div class="error-msg"><i class="pi pi-exclamation-circle"></i> {{ error() }}</div>
+      }
+      <div class="form-actions">
+        <button class="btn-secondary" (click)="cancelar()">Cancelar</button>
+        <button class="btn-primary" (click)="guardar()">
+          <i class="pi pi-check"></i> Guardar
+        </button>
+      </div>
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="loading">Cargando...</div>
+  } @else if (slides().length === 0) {
+    <div class="empty-state">
+      <i class="pi pi-images"></i>
+      <p>No hay slides creados todavía. Agrega el primero para que aparezca en el hero de la landing.</p>
+      <button class="btn-primary" (click)="nuevo()">
+        <i class="pi pi-plus"></i> Crear primer slide
+      </button>
+    </div>
+  } @else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Orden</th>
+            <th>Imagen</th>
+            <th>Título</th>
+            <th>Acento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (slide of slides(); track slide.id) {
+            <tr>
+              <td>{{ slide.orden }}</td>
+              <td>
+                <img [src]="slide.imagen" class="thumb" />
+              </td>
+              <td>{{ slide.titulo }}</td>
+              <td>{{ slide.acento }}</td>
+              <td class="acciones">
+                <button class="btn-icon editar" (click)="editar(slide)" title="Editar">
+                  <i class="pi pi-pencil"></i>
+                </button>
+                <button class="btn-icon eliminar" (click)="confirmarEliminar(slide.id!)" title="Eliminar">
+                  <i class="pi pi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
